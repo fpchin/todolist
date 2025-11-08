@@ -1,0 +1,71 @@
+name: Code Quality Checks
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  code-quality:
+    name: Code Quality Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better analysis
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          cd backend
+          pip install --upgrade pip
+          pip install -r requirements/development.txt
+
+      - name: Run Pylint
+        run: |
+          cd backend
+          pylint apps --exit-zero --output-format=json > pylint-report.json
+
+      - name: Upload Pylint report
+        uses: actions/upload-artifact@v3
+        with:
+          name: pylint-report
+          path: backend/pylint-report.json
+
+      - name: Check code complexity with radon
+        run: |
+          pip install radon
+          cd backend
+          radon cc apps -a -s || true
+          radon mi apps -s || true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm ci
+
+      - name: Run Prettier check
+        run: |
+          cd frontend
+          npx prettier --check "src/**/*.{ts,tsx,json,css,md}"
+
+      - name: Comment PR with quality metrics
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Code quality checks completed. Check the Actions tab for detailed reports.'
+            })
