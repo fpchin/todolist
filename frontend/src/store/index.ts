@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import roundReducer from './slices/roundSlice';
+import scoreReducer from './slices/scoreSlice';
 
-// Reducers will be added here as features are implemented
 export const store = configureStore({
   reducer: {
-    // Add reducers here
+    round: roundReducer,
+    score: scoreReducer,
   },
 });
 

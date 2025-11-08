@@ -23,10 +23,34 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+    proxy: {
+      '/api': {
+        target: 'http://backend:8000',
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     outDir: 'build',
     sourcemap: true,
+    // Optimize for mobile
+    target: 'es2015',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          mui: ['@mui/material', '@mui/icons-material'],
+          redux: ['@reduxjs/toolkit', 'react-redux'],
+        },
+      },
+    },
   },
   test: {
     globals: true,

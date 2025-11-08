@@ -57,9 +57,12 @@ const theme = createTheme({
         root: {
           borderRadius: 8,
           padding: '10px 20px',
+          // Ensure touch targets meet minimum 44x44px requirement
+          minHeight: 44,
+          minWidth: 44,
         },
         sizeLarge: {
-          minHeight: 48,
+          minHeight: 56,
           fontSize: '1rem',
         },
       },
@@ -69,6 +72,25 @@ const theme = createTheme({
         root: {
           borderRadius: 12,
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          // Touch-friendly input fields
+          '& .MuiInputBase-root': {
+            minHeight: 48,
+          },
+        },
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          // Ensure icon buttons meet minimum touch target
+          minWidth: 44,
+          minHeight: 44,
         },
       },
     },
