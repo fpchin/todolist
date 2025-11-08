@@ -42,10 +42,10 @@ INSTALLED_APPS = [
     # Local apps
     'apps.authentication',
     'apps.core',
+    'apps.scoring',
     # 'apps.tournaments',
     # 'apps.players',
     # 'apps.scores',
-    # 'apps.scoring',
     # 'apps.results',
 ]
 
