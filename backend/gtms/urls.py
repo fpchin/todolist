@@ -25,11 +25,11 @@ urlpatterns = [
         # Authentication
         path('auth/', include('apps.authentication.urls')),
 
-        # Core API endpoints (to be added)
-        # path('tournaments/', include('apps.tournaments.urls')),
-        # path('players/', include('apps.players.urls')),
-        # path('scores/', include('apps.scores.urls')),
-        # path('results/', include('apps.results.urls')),
+        # Core API endpoints
+        path('', include('apps.tournaments.urls')),
+        path('', include('apps.players.urls')),
+        path('', include('apps.courses.urls')),
+        path('', include('apps.scores.urls')),
     ])),
 ]
 

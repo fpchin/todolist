@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'apps.authentication',
     'apps.core',
     'apps.scoring',
-    # 'apps.tournaments',
-    # 'apps.players',
-    # 'apps.scores',
-    # 'apps.results',
+    'apps.tournaments',
+    'apps.players',
+    'apps.courses',
+    'apps.scores',
 ]
 
 MIDDLEWARE = [
