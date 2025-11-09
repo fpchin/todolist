@@ -8,7 +8,7 @@ This document provides guidance for analyzing the legacy Excel/VBA system (`21ST
 
 **Required File**: `21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm`
 
-**Location Expected**: `/home/user/todolist/legacy/`
+**Location Expected**: `/home/user/gtms/legacy/`
 
 ## Analysis Objectives
 
@@ -73,7 +73,7 @@ Understanding the legacy data structure helps inform migration strategy:
 
 ```bash
 # Once file is available, extract to legacy directory
-mkdir -p /home/user/todolist/legacy
+mkdir -p /home/user/gtms/legacy
 # Place file: 21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm
 
 # Use Python to inspect file structure
@@ -81,7 +81,7 @@ python3 << EOF
 import openpyxl
 import os
 
-file_path = '/home/user/todolist/legacy/21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm'
+file_path = '/home/user/gtms/legacy/21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm'
 
 if os.path.exists(file_path):
     # Load workbook
@@ -94,7 +94,7 @@ if os.path.exists(file_path):
     print("\nVBA Modules (if accessible):")
     # Note: Full VBA extraction may require additional libraries like oletools
 else:
-    print("Legacy file not found. Please place the file in /home/user/todolist/legacy/")
+    print("Legacy file not found. Please place the file in /home/user/gtms/legacy/")
 EOF
 ```
 
@@ -107,7 +107,7 @@ Use `oletools` or similar to extract VBA code for analysis:
 pip install oletools
 
 # Extract VBA code
-olevba "/home/user/todolist/legacy/21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm" > legacy/vba_extracted.txt
+olevba "/home/user/gtms/legacy/21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm" > legacy/vba_extracted.txt
 ```
 
 ### Step 3: Document Formulas
@@ -240,7 +240,7 @@ All scoring logic must have comprehensive regression tests:
 ## Next Steps (When File is Available)
 
 1. **Immediately upon receiving the file**:
-   - Place file in `/home/user/todolist/legacy/`
+   - Place file in `/home/user/gtms/legacy/`
    - Run initial inspection scripts
    - Extract VBA code
 
@@ -365,7 +365,7 @@ def analyze_legacy_file(file_path):
     vba_parser.close()
 
 if __name__ == "__main__":
-    file_path = "/home/user/todolist/legacy/21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm"
+    file_path = "/home/user/gtms/legacy/21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm"
     analyze_legacy_file(file_path)
 ```
 
@@ -384,7 +384,7 @@ if __name__ == "__main__":
 **Action Required**:
 Please provide the file: `21ST SIBU AMATEUR OPEN GOLF CHAMPIONSHIP 2023.xlsm`
 
-Place it in: `/home/user/todolist/legacy/` directory
+Place it in: `/home/user/gtms/legacy/` directory
 
 ---
 
