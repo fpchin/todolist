@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.players',
     'apps.courses',
     'apps.scores',
+    'apps.migration',
 ]
 
 MIDDLEWARE = [
